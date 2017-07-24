@@ -27,14 +27,14 @@ class LogStash::Filters::NLP < LogStash::Filters::Base
     # return nothing unless there's an actual filter event
     return unless filter?(event)
     if @source
-      if event[@source].to_s != ''
+      if event.get(@source).to_s != ''
         # Replace the event message with our message as configured in the
         # config file.
-        @result = @parser.processLine(event[@source])
+        @result = @parser.processLine(event.get(@source))
         #event["message"] = event["message"] + @result.sentiment.to_s
-        event["nlp.sentiment"] = @result.sentiment
-        event["nlp.tokens"] = @result.tokens
-        event["nlp.sentences"] = @result.sentences
+        event.set("nlp.sentiment", @result.sentiment)
+        event.set("nlp.tokens",  @result.tokens)
+        event.set("nlp.sentences", @result.sentences)
       end
     end
     # filter_matched should go in the last line of our successful code

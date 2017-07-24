@@ -1,6 +1,8 @@
 #Intro
 
-[![Join the chat at https://gitter.im/jwconway/logstash-filter-stanford-nlp](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/jwconway/logstash-filter-stanford-nlp?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+Updated version of https://github.com/jwconway/logstash-filter-stanford-nlp for compatibility with ELK 5.x
+
+Original (edited) readme as follows:
 
 This is an attempt to plugin the [Stanford NLP library](http://nlp.stanford.edu/software/corenlp.shtml) into logstash and make its features available via a logstash filter. It is in very alpha condition at the minute but is useable.
 
@@ -11,8 +13,7 @@ The aim is for any field in any set of logs that are piped through logstash to b
 - Sentence sentiment
 - Sentence sentiment Tree
 
-##Intallation
->This is pretty rudimental at present but should get me started
+## Installation
 
 ```
 #cd to the logstash filters folder
@@ -24,12 +25,12 @@ mkdir nlp
 cd nlp
 wget http://central.maven.org/maven2/edu/stanford/nlp/stanford-corenlp/3.5.0/stanford-corenlp-3.5.0.jar
 wget http://nlp.stanford.edu/software/stanford-corenlp-models-current.jar
-wget https://github.com/jwconway/logstash-filter-stanford-nlp/raw/master/lib/stanford_nlp_wrapper_jar/stanford-nlp-wrapper.jar
+wget https://github.com/hscells/logstash-filter-stanford-nlp/raw/master/lib/stanford_nlp_wrapper_jar/stanford-nlp-wrapper.jar
 ```
 ```
 #download the filter into the filter folder
 cd ..
-wget https://raw.githubusercontent.com/jwconway/logstash-filter-stanford-nlp/master/logstash/lib/filters/nlp.rb
+wget https://raw.githubusercontent.com/hscells/logstash-filter-stanford-nlp/master/logstash/lib/filters/nlp.rb
 ```
 ## Usage
 
@@ -50,13 +51,16 @@ output {
 
 This will add 3 fields to your log:
 
-###nlp.sentiment
+### nlp.sentiment
+
 This is the average sentiment of the entire phrase
 
-###nlp.tokens
-This is the phrase broken down into its token (mighty useful in elasticsearch)
+### nlp.tokens
 
-###nlp.sentences
+This is the phrase broken down into its token (mighty useful in Elasticsearch)
+
+### nlp.sentences
+
 This is an array of sentences that were extracted from the phrase. For each sentence you will get:
  - sentiment: The sentiment of the sentence
  - tokens: The tokens in the sentence
@@ -66,6 +70,7 @@ This is an array of sentences that were extracted from the phrase. For each sent
  ```
  
 ## The Stanford Natural Language Processing Group
+
 Thanks to [The Stanford Natural Language Processing Group](http://nlp.stanford.edu/software/corenlp.shtml)
 
 [Stanford NLP Github Page](https://github.com/stanfordnlp/CoreNLP)
